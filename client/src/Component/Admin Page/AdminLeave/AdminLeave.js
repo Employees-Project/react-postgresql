@@ -22,9 +22,9 @@ export default function AdminLeave() {
                 <div className='d-flex flex-row-reverse bd-highlight'>
                     <Link to="/admin/addleave" className='btn btn-primary'>เพิ่มหัวข้อการลา</Link>
                 </div><hr />
+                <div className="row">
                 {leave.map(val => (
-                    <div className="row ">
-                        <div className="col-sm">
+                        <div className="col-md-4">
                             <div className="card">
                             <h3 class="card-header">{val.l_subject}</h3>
                                 <div className="card-body">
@@ -39,8 +39,8 @@ export default function AdminLeave() {
                                 </div>
                             </div><br />
                         </div>
-                    </div>
                 ))}
+                </div>
             </div>
         </>
     );

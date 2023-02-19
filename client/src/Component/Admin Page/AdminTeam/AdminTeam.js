@@ -7,6 +7,7 @@ function WithHeaderExample() {
   const [teamList, setTeamList] = useState([]);
   const [delTeam, setDelTeam] = useState([]);
 
+
   Axios.get("http://localhost:3001/teams").then((response) => {
     setTeamList(response.data);
   });
@@ -40,9 +41,9 @@ function WithHeaderExample() {
                   </h4>
                   <p className="card-text">1. {val.member1}</p>
                   <p className="card-text">2. {val.member2}</p>
-                  <p className="card-text">3. {val.member3}</p>
-                  <p className="card-text">4. {val.member4}</p>
-                  <p className="card-text">5. {val.member5}</p>
+                  <p className="card-text">{val.member3 ? `3. ${val.member3}`: null }</p>
+                  <p className="card-text">{val.member4 ? `4. ${val.member3}`: null }</p>
+                  <p className="card-text">{val.member5 ? `5. ${val.member3}`: null }</p>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button
                       onClick={() => deleteTeam(val.teamid)}

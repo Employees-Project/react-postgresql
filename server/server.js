@@ -348,7 +348,7 @@ app.get("/leave", (req, res) => {
   });
 });
 
-app.post("/createleave", async (req, res) => {
+app.post("/create/leave", async (req, res) => {
   const { l_subject, l_limit_m, l_limit_y } = req.body;
   pool.query(
     "SELECT * FROM history WHERE l_subject = $1",
@@ -369,7 +369,7 @@ app.post("/createleave", async (req, res) => {
               console.log(err);
             } else {
               console.log("Success");
-              return res.status(200).json("Success");
+              // return res.status(200).json("Success");
             }
           }
         );
