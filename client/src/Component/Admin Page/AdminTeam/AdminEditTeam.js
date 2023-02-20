@@ -232,7 +232,6 @@ export default function AdminEditTeam() {
             <select
               className="form-select"
               htmlFor="leader"
-              value={leader}
               required
               onChange={(event) => {
                 setLeader(event.target.value);

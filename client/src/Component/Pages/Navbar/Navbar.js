@@ -24,9 +24,9 @@ const Navbar = () => {
                         <li><Link to="/" className="nav-link px-2 text-white">ข้อมูลการลา</Link></li>
                         <li><Link to="/noti" className="nav-link px-2 text-white">การแจ้งเตือน</Link></li>
                     </ul>
-                    <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                    {/* <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                         <input type="search" class="form-control" placeholder="Search" aria-label="Search"/>
-                    </form>
+                    </form> */}
                     <div>
                         <button type="button" className="btn btn-primary " data-bs-toggle="dropdown" aria-expanded="false" onClick={Logout}>
                             Logout

@@ -11,8 +11,6 @@ export default function AdminAddLeave() {
   const [subject, setSubject] = useState("");
   const [limit_m, setLimit_m] = useState("");
   const [limit_y, setLimit_y] = useState("");
-
-  console.log(limit_m);
   
   const addLeave = (event) => {
     event.preventDefault();
