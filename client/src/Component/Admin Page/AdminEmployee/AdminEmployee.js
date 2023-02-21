@@ -4,6 +4,7 @@ import Axios from "axios";
 import "./AdminEmployee.css";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
 
 export default function AdminEmployees() {
   const [employeeList, setEmployeeList] = useState([]);
@@ -11,6 +12,8 @@ export default function AdminEmployees() {
   Axios.get("http://localhost:3001/employees").then((response) => {
     setEmployeeList(response.data);
   });
+
+  
 
   return (
     <>
@@ -45,6 +48,15 @@ export default function AdminEmployees() {
           </thead>
           <tbody>
             {employeeList.map((val) => {
+              
+              var date = new Date(val.birthday);
+
+              const result = date.toLocaleDateString('th-TH', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })
+              
               return (
                 <tr>
                   <th scope="row">{val.employeeid}</th>
@@ -52,7 +64,7 @@ export default function AdminEmployees() {
                   <td>{val.employeename}</td>
                   <td>{val.gender ? "ชาย" : "หญิง"}</td>
                   {/* <td input type={date}>{val.birthday.substring(0, 10)}</td> */}
-                  <td>{val.birthday}</td>
+                  <td>{result}</td>
                   <td>{val.jobposition}</td>
                   <td>{val.position}</td>
                   <td>{val.phoneno}</td>

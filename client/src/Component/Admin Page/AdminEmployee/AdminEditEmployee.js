@@ -125,7 +125,7 @@ export default function AdminEditEmployee() {
     <>
       <AdminNavbar />
       <br />
-      <div className="form-container">
+      <div className="form-container1">
         <form className="form-signin row g-3">
           <div>
             <h2>แก้ไขพนักงาน</h2>

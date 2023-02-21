@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-// import "./Style/Login.css";
+import "./Style/Login.css";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -86,7 +86,7 @@ export default function Login() {
     console.log(inputs);
   };
   return (
-    <div>
+    <div className="body">
       <div className="form-container">
         EMPLOYEE STORAGE SYSTEM PROTOSS TECHNOLOGY COMPANY LIMITED
         <br />
@@ -126,7 +126,7 @@ export default function Login() {
               onChange={handleChange}
             />
           </div>
-          <button className="btn btn-primary btn-block ">เข้าสู่ระบบ</button>
+          <button className="btnn btnn-primary btnn-block ">เข้าสู่ระบบ</button>
         </form>
       </div>
     </div>

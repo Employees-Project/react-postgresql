@@ -27,6 +27,7 @@ export default function AddEmployee() {
   const [province, setProvince] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [pic, setPic] = useState("");
+  console.log("🚀 ~ file: AddEmployee.js:30 ~ AddEmployee ~ pic:", pic)
 
   function handleImage(event) {
     console.log(event.target.files);
@@ -35,80 +36,84 @@ export default function AddEmployee() {
 
   const addEmployee = (event) => {
     event.preventDefault();
-    if (
-      username === "" ||
-      password === "" ||
-      identityNo === "" ||
-      jobPosition === "" ||
-      position === "" ||
-      employeeName === "" ||
-      gender === "" ||
-      birthday === "" ||
-      phoneNo === "" ||
-      email === "" ||
-      address === "" ||
-      moo === "" ||
-      street === "" ||
-      disdrict === "" ||
-      ambhur === "" ||
-      province === "" ||
-      zipCode === "" ||
-      pic === ""
-    ) {
-      console.log("Enter all information");
-      Swal.fire({
-        icon: "error",
-        title: "ไม่สามารถเพิ่มข้อมูลได้",
-        text: "กรุณากรอกข้อมูลให้ครบ",
-      });
-    } else if (
-      username !== "" ||
-      password !== "" ||
-      identityNo !== "" ||
-      jobPosition !== "" ||
-      position !== "" ||
-      employeeName !== "" ||
-      gender !== "" ||
-      birthday !== "" ||
-      phoneNo !== "" ||
-      email !== "" ||
-      address !== "" ||
-      moo !== "" ||
-      street !== "" ||
-      disdrict !== "" ||
-      ambhur !== "" ||
-      province !== "" ||
-      zipCode !== "" ||
-      pic !== ""
-    ) {
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "เพิ่มข้อมูลสำเร็จ",
-        showConfirmButton: false,
-        timer: 2500,
-      });
-      Axios.post("http://localhost:3001/create", {
-        username: username,
-        password: password,
-        identityNo: identityNo,
-        jobPosition: jobPosition,
-        position: position,
-        employeeName: employeeName,
-        gender: gender,
-        birthday: birthday,
-        phoneNo: phoneNo,
-        email: email,
-        address: address,
-        moo: moo,
-        street: street,
-        disdrict: disdrict,
-        ambhur: ambhur,
-        province: province,
-        zipCode: zipCode,
-        pic: pic,
-      });
-      navigate("/admin/employee");
+    try {
+      if (
+        username === "" ||
+        password === "" ||
+        identityNo === "" ||
+        jobPosition === "" ||
+        position === "" ||
+        employeeName === "" ||
+        gender === "" ||
+        birthday === "" ||
+        phoneNo === "" ||
+        email === "" ||
+        address === "" ||
+        moo === "" ||
+        street === "" ||
+        disdrict === "" ||
+        ambhur === "" ||
+        province === "" ||
+        zipCode === "" ||
+        pic === ""
+      ) {
+        console.log("Enter all information");
+        Swal.fire({
+          icon: "error",
+          title: "ไม่สามารถเพิ่มข้อมูลได้",
+          text: "กรุณากรอกข้อมูลให้ครบ",
+        });
+      } else if (
+        username !== "" ||
+        password !== "" ||
+        identityNo !== "" ||
+        jobPosition !== "" ||
+        position !== "" ||
+        employeeName !== "" ||
+        gender !== "" ||
+        birthday !== "" ||
+        phoneNo !== "" ||
+        email !== "" ||
+        address !== "" ||
+        moo !== "" ||
+        street !== "" ||
+        disdrict !== "" ||
+        ambhur !== "" ||
+        province !== "" ||
+        zipCode !== "" ||
+        pic !== ""
+      ) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "เพิ่มข้อมูลสำเร็จ",
+          showConfirmButton: false,
+          timer: 2500,
+        });
+        Axios.post("http://localhost:3001/create", {
+          username: username,
+          password: password,
+          identityNo: identityNo,
+          jobPosition: jobPosition,
+          position: position,
+          employeeName: employeeName,
+          gender: gender,
+          birthday: birthday,
+          phoneNo: phoneNo,
+          email: email,
+          address: address,
+          moo: moo,
+          street: street,
+          disdrict: disdrict,
+          ambhur: ambhur,
+          province: province,
+          zipCode: zipCode,
+          pic: pic,
+        });
+        navigate("/admin/employee");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -116,8 +121,8 @@ export default function AddEmployee() {
     <>
       <AdminNavbar />
       <br />
-      <div className="form-container">
-        <form className="form-signin row g-3">
+      <div className="form-container1">
+        <form className="form-signin row g-3" enctype='multipart/form-data' >
           <div>
             <h2>เพิ่มพนักงาน</h2>
           </div>
@@ -228,7 +233,6 @@ export default function AddEmployee() {
             <select
               className="form-select"
               htmlFor="gender"
-              required
               onChange={(event) => {
                 setGender(event.target.value);
               }}

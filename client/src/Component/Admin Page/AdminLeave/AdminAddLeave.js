@@ -50,7 +50,7 @@ export default function AdminAddLeave() {
     <>
       <AdminNavbar />
       <br />
-      <div className="form-container">
+      <div className="form-container1">
         <form className="form-signin row g-3">
           <div>
             <h2>เพิ่มหัวข้อการลา</h2>
