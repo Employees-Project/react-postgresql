@@ -18,10 +18,10 @@ app.use(
 );
 
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "protoss",
-  password: "Bright11",
+  user: "mogzpyxa",
+  host: "john.db.elephantsql.com",
+  database: "mogzpyxa",
+  password: "5RSfyhJ-AlXND2PGFwgzVlVCPUzlEnCt",
   port: 5432,
 });
 
@@ -136,7 +136,7 @@ app.post("/login", (req, res) => {
         function (err, isCorrect) {
           if (isCorrect) {
             req.session.user = user;
-            let isAdmin = employees?.rows[0].isAdmin;
+            let isAdmin = employees?.rows[0].isadmin;
             if (isAdmin !== true) {
               console.log("not Admin");
               return res.status(200).json("not Admin");

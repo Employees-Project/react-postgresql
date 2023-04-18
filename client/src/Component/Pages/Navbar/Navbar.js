@@ -1,11 +1,19 @@
 import React from "react";
 import { Link, useNavigate} from "react-router-dom";
 import './Navbar.css'
+import Swal from "sweetalert2";
 
 const Navbar = () => {
     const navigate = useNavigate();
     const Logout = () => {
         window.localStorage.removeItem("isLoggedIn");
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "ออกจากระบบสำเร็จ",
+            showConfirmButton: false,
+            timer: 2500,
+          });
         navigate("/");
     }
 

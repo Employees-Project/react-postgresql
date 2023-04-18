@@ -1,11 +1,19 @@
 import React from "react";
 import { Link, useNavigate} from "react-router-dom";
 import './AdminNavbar.css'
+import Swal from "sweetalert2";
 
 const AdminNavbar = () => {
     const navigate = useNavigate();
     const Logout = () => {
         window.localStorage.removeItem("isLoggedInAdmin");
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "ออกจากระบบสำเร็จ",
+            showConfirmButton: false,
+            timer: 2500,
+          });
         navigate("/");
     }
 
