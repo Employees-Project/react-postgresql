@@ -416,6 +416,19 @@ app.delete("/delete/leave/:id", (req, res) => {
   });
 });
 
+app.get("/disdricts", (req, res) => {
+  pool.query(
+    "SELECT * FROM districts ORDER BY id ASC",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result.rows);
+      }
+    }
+  );
+});
+
 app.listen(3001, () => {
   console.log("Server run on localhost:3001");
 });

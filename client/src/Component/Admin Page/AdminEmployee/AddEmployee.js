@@ -7,6 +7,11 @@ import Swal from "sweetalert2";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 
 export default function AddEmployee() {
+  const [data, setData] = useState([]);
+  Axios.get("http://localhost:3001/disdricts").then((response) => { http://localhost:3001/disdricts
+    setData(response.data);
+  });
+  
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -307,7 +312,7 @@ export default function AddEmployee() {
               }}
             />
           </div>
-          <div className="col-md-2">
+          {/* <div className="col-md-2">
             <label className="form-label" htmlFor="disdrict">
               ตำบล/แขวง:
             </label>
@@ -319,6 +324,22 @@ export default function AddEmployee() {
                 setDisdrict(event.target.value);
               }}
             />
+          </div> */}
+          <div className="col-md-2">
+            <label className="form-label">ตำบล/แขวง:</label>
+            <select
+              className="form-select"
+              htmlFor="districts"
+              required
+              onChange={(event) => {
+                setDisdrict(event.target.value);
+              }}
+            >
+              <option>กรุณาเลือกตำบล/แขวง</option>
+              {data.map((val) => {
+                return <option>{val.name_th}</option>;
+              })}
+            </select>
           </div>
           <div className="col-md-2">
             <label className="form-label" htmlFor="ambhur">
