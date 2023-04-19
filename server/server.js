@@ -418,7 +418,46 @@ app.delete("/delete/leave/:id", (req, res) => {
 
 app.get("/disdricts", (req, res) => {
   pool.query(
-    "SELECT * FROM districts ORDER BY id ASC",
+    "SELECT * FROM districts ORDER BY name_th ASC",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result.rows);
+      }
+    }
+  );
+});
+
+app.get("/amphures", (req, res) => {
+  pool.query(
+    "SELECT * FROM amphures ORDER BY name_th ASC",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result.rows);
+      }
+    }
+  );
+});
+
+app.get("/provinces", (req, res) => {
+  pool.query(
+    "SELECT * FROM provinces ORDER BY name_th  ASC",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result.rows);
+      }
+    }
+  );
+});
+
+app.get("/zipcode", (req, res) => {
+  pool.query(
+    "SELECT * FROM districts ORDER BY zip_code ASC",
     (err, result) => {
       if (err) {
         console.log(err);

@@ -8,7 +8,7 @@ import AdminNavbar from "../AdminNavbar/AdminNavbar";
 
 export default function AddEmployee() {
   const [data, setData] = useState([]);
-  Axios.get("http://localhost:3001/disdricts").then((response) => { http://localhost:3001/disdricts
+  Axios.get("http://localhost:3001/disdricts").then((response) => {
     setData(response.data);
   });
   
@@ -312,19 +312,6 @@ export default function AddEmployee() {
               }}
             />
           </div>
-          {/* <div className="col-md-2">
-            <label className="form-label" htmlFor="disdrict">
-              ตำบล/แขวง:
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              required
-              onChange={(event) => {
-                setDisdrict(event.target.value);
-              }}
-            />
-          </div> */}
           <div className="col-md-2">
             <label className="form-label">ตำบล/แขวง:</label>
             <select
