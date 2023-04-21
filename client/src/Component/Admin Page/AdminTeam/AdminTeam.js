@@ -2,6 +2,7 @@ import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import Axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function WithHeaderExample() {
   const [teamList, setTeamList] = useState([]);
@@ -46,7 +47,25 @@ function WithHeaderExample() {
                   <p className="card-text">{val.member5 ? `5. ${val.member3}`: null }</p>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button
-                      onClick={() => deleteTeam(val.teamid)}
+                      onClick={() => Swal.fire({
+                        title: 'คุณต้องการลบทีมใช่หรือไม่?',
+                        // text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'ใช่! ฉันต้องการลบ',
+                        cancelButtonText: 'ยกเลิก'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          deleteTeam(val.teamid)
+                          Swal.fire(
+                            'ลบสำเร็จ!',
+                            'คุณได้ลบทีมสำเร็จ',
+                            'success'
+                          )
+                        }
+                      })}
                       class="btn btn-danger"
                     >
                       ลบทีม
