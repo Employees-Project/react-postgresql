@@ -8,24 +8,20 @@ import AdminNavbar from "../AdminNavbar/AdminNavbar";
 
 export default function AdminEditEmployee() {
   const [data1, setData1] = useState([]);
-  Axios.get("http://localhost:3001/disdricts").then((response) => {
+  Axios.get("https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_tambon.json").then((response) => {
     setData1(response.data);
   });
 
   const [data2, setData2] = useState([]);
-  Axios.get("http://localhost:3001/amphures").then((response) => {
+  Axios.get("https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_amphure.json").then((response) => {
     setData2(response.data);
   });
 
   const [data3, setData3] = useState([]);
-  Axios.get("http://localhost:3001/provinces").then((response) => {
+  Axios.get("https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_province.json").then((response) => {
     setData3(response.data);
   });
 
-  const [data4, setData4] = useState([]);
-  Axios.get("http://localhost:3001/zipcode").then((response) => {
-    setData4(response.data);
-  });
 
   const { id } = useParams();
   const [data, setData] = useState([]);
@@ -58,7 +54,7 @@ export default function AdminEditEmployee() {
     fetch(`http://localhost:3001/employee/${id}`).then((result) => {
       result.json().then((resp) => {
         // console.warn(resp)
-        setData(resp);
+        // setData(resp);
         setJobPosition(resp[0].jobposition);
         setPosition(resp[0].position);
         setEmployeeName(resp[0].employeename);
@@ -281,6 +277,7 @@ export default function AdminEditEmployee() {
               <option>กรุณาเลือกตำบล/แขวง</option>
               {data1.map((val) => {
                 return <option>{val.name_th}</option>;
+                
               })}
             </select>
           </div>
@@ -330,7 +327,7 @@ export default function AdminEditEmployee() {
               }}
             >
               <option>กรุณาเลือกรหัสไปรษณีย์</option>
-              {data4.map((val) => {
+              {data1.map((val) => {
                 return <option>{val.zip_code}</option>;
               })}
             </select>

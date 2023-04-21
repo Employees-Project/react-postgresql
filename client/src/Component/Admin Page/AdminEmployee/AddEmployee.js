@@ -7,9 +7,19 @@ import Swal from "sweetalert2";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 
 export default function AddEmployee() {
-  const [data, setData] = useState([]);
-  Axios.get("http://localhost:3001/disdricts").then((response) => {
-    setData(response.data);
+  const [data1, setData1] = useState([]);
+  Axios.get("https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_tambon.json").then((response) => {
+    setData1(response.data);
+  });
+
+  const [data2, setData2] = useState([]);
+  Axios.get("https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_amphure.json").then((response) => {
+    setData2(response.data);
+  });
+
+  const [data3, setData3] = useState([]);
+  Axios.get("https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_province.json").then((response) => {
+    setData3(response.data);
   });
   
   const navigate = useNavigate();
@@ -323,49 +333,57 @@ export default function AddEmployee() {
               }}
             >
               <option>กรุณาเลือกตำบล/แขวง</option>
-              {data.map((val) => {
+              {data1.map((val) => {
                 return <option>{val.name_th}</option>;
               })}
             </select>
           </div>
           <div className="col-md-2">
-            <label className="form-label" htmlFor="ambhur">
-              อำเภอ/เขต:
-            </label>
-            <input
-              type="text"
-              className="form-control"
+            <label className="form-label">อำเภอ/เขต:</label>
+            <select
+              className="form-select"
+              htmlFor="ambhur"
               required
               onChange={(event) => {
                 setAmbhur(event.target.value);
               }}
-            />
+            >
+              <option>กรุณาเลือกอำเภอ/เขต</option>
+              {data2.map((val) => {
+                return <option>{val.name_th}</option>;
+              })}
+            </select>
           </div>
           <div className="col-md-2">
-            <label className="form-label" htmlFor="province">
-              จังหวัด:
-            </label>
-            <input
-              type="text"
-              className="form-control"
+            <label className="form-label">จังหวัด:</label>
+            <select
+              className="form-select"
+              htmlFor="province"
               required
               onChange={(event) => {
                 setProvince(event.target.value);
               }}
-            />
-          </div>
-          <div className="col-md-1">
-            <label className="form-label" htmlFor="zipCode">
-              รหัสไปรษณีย์:
-            </label>
-            <input
-              type="text"
-              className="form-control"
+            >
+              <option>กรุณาเลือกจังหวัด</option>
+              {data3.map((val) => {
+                return <option>{val.name_th}</option>;
+              })}
+            </select>
+          </div><div className="col-md-1">
+            <label className="form-label">รหัสไปรษณีย์:</label>
+            <select
+              className="form-select"
+              htmlFor="zipCode"
               required
               onChange={(event) => {
                 setZipCode(event.target.value);
               }}
-            />
+            >
+              <option>กรุณาเลือกรหัสไปรษณีย์</option>
+              {data1.map((val) => {
+                return <option>{val.zip_code}</option>;
+              })}
+            </select>
           </div>
           <div className="col-md-12">
             <label className="form-label" htmlFor="pic">
