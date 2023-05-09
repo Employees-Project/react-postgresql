@@ -72,6 +72,7 @@ app.post("/create", async (req, res) => {
     province,
     zipCode,
     pic,
+    active
   } = req.body;
   hashedPassword = await bcrypt.hash(password, 10);
   console.log(hashedPassword);
@@ -89,7 +90,7 @@ app.post("/create", async (req, res) => {
         return res.status(400).json("Username already registered");
       } else {
         pool.query(
-          "INSERT INTO employees (username,password,identityNo,jobPosition,position,employeeName,gender,birthday,phoneNo,email,address,moo,street,disdrict,ambhur,province,zipCode,pic)VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)",
+          "INSERT INTO employees (username,password,identityNo,jobPosition,position,employeeName,gender,birthday,phoneNo,email,address,moo,street,disdrict,ambhur,province,zipCode,pic,active)VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)",
           [
             username,
             hashedPassword,
@@ -109,6 +110,7 @@ app.post("/create", async (req, res) => {
             province,
             zipCode,
             pic,
+            active
           ],
           (err, results) => {
             if (err) {
@@ -136,13 +138,16 @@ app.post("/login", (req, res) => {
         function (err, isCorrect) {
           if (isCorrect) {
             req.session.user = user;
+            let isActive = employees?.rows[0].active;
             let isAdmin = employees?.rows[0].isadmin;
-            if (isAdmin !== true) {
-              console.log("not Admin");
+            if (isActive === true && isAdmin === true) {
+              console.log("Active");
+              return res.status(200).json("Active");
+            } else if (isActive === true && isAdmin !== true) {
               return res.status(200).json("not Admin");
-            } else {
-              console.log("im Admin");
-              return res.status(200).json("im Admin");
+            } else if (isActive === false) {
+              console.log("Not Active");
+              return res.status(200).json("Not Active");
             }
           }
           if (err) {

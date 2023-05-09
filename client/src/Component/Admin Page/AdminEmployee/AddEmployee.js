@@ -124,6 +124,7 @@ export default function AddEmployee() {
           province: province,
           zipCode: zipCode,
           pic: pic,
+          active: true
         });
         navigate("/admin/employee");
       }

@@ -38,36 +38,33 @@ export default function Login() {
       .then((result, err) => {
         setData(result);
         console.log(result);
-        // if (result.active === true) {
-          if (result === "im Admin") {
-            window.localStorage.setItem("isLoggedInAdmin", true);
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "สวัสดี Admin",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            navigate("/admin");
-          } else if (result === "not Admin") {
-            window.localStorage.setItem("isLoggedIn", true);
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "สวัสดี HR",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            navigate("/home");
-          }
-        // } 
-        else if (result.active === false) {
+        if (result === "Active") {
+          window.localStorage.setItem("isLoggedInAdmin", true);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "สวัสดี Admin",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/admin");
+        } else if (result === "not Admin") {
+          window.localStorage.setItem("isLoggedIn", true);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "สวัสดี HR",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/home");
+        } else if (result === "Not Active") {
           Swal.fire({
             icon: "error",
             title: "ไม่สามารถเข้าสู่ระบบได้",
-            text: "รหัสผู้ใช้งานนี้ถูกระงับ",
+            text: "รหัสผู้ใช้งานนี้ถูกระงับโปรดติดต่อ HR",
           });
-        } else if (inputs.username === "" || inputs.password === "") {
+        } else if (inputs.username === "" && inputs.password === "") {
           Swal.fire({
             icon: "error",
             title: "ไม่สามารถเข้าสู่ระบบได้",
@@ -75,13 +72,13 @@ export default function Login() {
           });
         }
       })
-      .catch((err) =>
-        Swal.fire({
-          icon: "error",
-          title: "ไม่สามารถเข้าสู่ระบบได้",
-          text: "รหัสผู้ใช้งาน หรือ รหัสผ่าน ไม่ถูกต้อง",
-        })
-      );
+      // .catch((err) =>
+      //   Swal.fire({
+      //     icon: "error",
+      //     title: "ไม่สามารถเข้าสู่ระบบได้",
+      //     text: "รหัสผู้ใช้งาน หรือ รหัสผ่าน ไม่ถูกต้อง2",
+      //   })
+      // );
 
     console.log(inputs);
   };
